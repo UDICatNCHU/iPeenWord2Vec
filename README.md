@@ -86,9 +86,9 @@ python 3.4
 django 1.10.6
 
 ## Web API Usage
-e.g. for querying terms combined with `冬天+溫度+雨季` for `50` articles:
+e.g. for querying terms combined with `冬天+紅酒+情人節` for `50` articles:
 
-http://140.120.13.244:9487/getArticles/?term=冬天+溫度+雨季&num=50
+http://140.120.13.244:9487/getArticles/?term=冬天+紅酒+情人節&num=50
 
 ps. for the time being I use django templates for better demonstration, may change to jsonresponse in the future.
 
