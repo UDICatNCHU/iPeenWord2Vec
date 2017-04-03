@@ -38,9 +38,10 @@ ipeenCrawler class needs to be initialized with __a number__ that stands for one
 | 7   |   烘陪、甜食、零食                               |
 
 #### getTypeUrl function
+getTypeUrl will create a text file, with a article per line.
 - __args__: none
 - __return__: none
-getTypeUrl will create a text file, with a article per line.
+
 #### Example
 ```python
 obj = ipeenCrawler(27) # 中式料理
@@ -52,9 +53,9 @@ obj.getTypeUrl() # the result text file will be stored in './result/'
 exportToMongo class has 3 constructors need to be initialized: __text file file path__, __word2vec model file path__ and __mongoDB uri__.
 
 #### insertDB functiomn
+insertDB function find the top20 keywords for each article with TF-IDF, and stores article content, top20 keywords, sum vector of top20 etc into mongoDB as a document.
 - __args__: none
 - __return__: none
-insertDB function find the top20 keywords for each article with TF-IDF, and stores article content, top20 keywords, sum vector of top20 etc into mongoDB as a document.
 
 #### Example
 ```python
