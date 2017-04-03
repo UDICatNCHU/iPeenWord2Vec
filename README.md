@@ -82,8 +82,8 @@ obj.getArticle(queryList, 50)
 ```
 
 ## Built With
-python 3.4
-django 1.10.6
+- python 3.4
+- django 1.10.6
 
 ## Web API Usage
 e.g. for querying terms combined with `夏天+啤酒+燒烤` for `50` articles:
