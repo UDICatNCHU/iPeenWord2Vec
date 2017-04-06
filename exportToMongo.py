@@ -34,7 +34,7 @@ class exportToMongo(object):
         returnList = list() # 用來放所有文章的關鍵字
         for article in self.file.readlines(): # loops over 一篇一篇的文章
             kwList = list()
-            articleResultList = jieba.analyse.extract_tags(article, topK=30, withWeight=True, allowPOS=())
+            articleResultList = jieba.analyse.extract_tags(article, topK=30, withWeight=True, allowPOS=('v', 'n', 'a'))
             for item in articleResultList: # 一個item是 ('冰淇淋', 0.3858822943471564)
                 if len(kwList) < 20:
                     if item[0] in self.stopwords: # 如果斷詞是stopword，則不放進returnList
@@ -49,7 +49,7 @@ class exportToMongo(object):
             returnList.append(kwList)
 
             printCount += 1
-            if printCount % 1000 == 0: print('已經計算完前' + str(printCount) + '篇文章的Top20關鍵字')
+            if printCount % 100 == 0: print('已經計算完前' + str(printCount) + '篇文章的Top20關鍵字')
 
         return returnList
 
