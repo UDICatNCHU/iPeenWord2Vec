@@ -40,8 +40,8 @@ ipeenCrawler class needs to be initialized with __a number__ that stands for one
 
 #### getTypeUrl function
 getTypeUrl will create a text file, with a article per line.
-- __args__: none
-- __return__: none
+- `args` none
+- `return` none
 
 #### Example
 ```python
@@ -55,8 +55,8 @@ exportToMongo class has 3 constructors need to be initialized: __text file file 
 
 #### insertDB functiomn
 insertDB function find the top20 keywords for each article with TF-IDF, and stores article content, top20 keywords, sum vector of top20 etc into mongoDB as a document.
-- __args__: none
-- __return__: none
+- `args` none
+- `return` none
 
 #### Example
 ```python
@@ -68,11 +68,11 @@ obj.insertDB() # it takes around 40 minutes
 GetTopResult class cooperates with the django views. This class needs to be initialized with __word2vec model path__ and __mongoDB uri__.
 
 #### getArticle funstion
-- __args__:
+- `args`
 1. a list which contains the query terms from user
 2. an integer which assigns the return number of articles.
 
-- __return__:
+- `return`
 A dictionary which stores the information of the article contents along with its top20 keywords.
 
 #### Example
@@ -83,14 +83,13 @@ obj.getArticle(queryList, 50)
 
 ## Built With
 - python 3.4
-- django 1.10.6
 
 ## Web API Usage
-e.g. for querying terms combined with `夏天+啤酒+燒烤` for `50` articles:
+e.g. For querying terms combined with `夏天+啤酒+燒烤` for `50` articles:
 
 http://140.120.13.244:9487/getArticles/?term=夏天+啤酒+燒烤&num=50
 
-ps. for the time being I use django templates for better demonstration, may change to jsonresponse in the future.
+ps. For the time being I use django templates for better demonstration, may change to jsonresponse in the future.
 
 ## Contributors
 [Shane Yu](https://github.com/theshaneyu)
