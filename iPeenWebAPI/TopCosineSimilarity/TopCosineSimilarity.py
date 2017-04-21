@@ -31,13 +31,14 @@ class GetTopResult(object):
         # 至此已經得到使用者Query的所有Term的加總向量，為sumVec
 
         # self.getMostSimilar(sumVec, topNum)
+        print('開始跑getMostSimilar韓式')
         idList = self.getMostSimilar(sumVec, topNum)
         resultList = list()
         for item in idList:
             resultArticle = self.coll.find({"_id": ObjectId(item)}, {'Vector': False, 'ID': False})
             # print(type(resultArticle[0])) # <class 'dict'>
             resultList.append(resultArticle[0])
-        
+
         return resultList
 
 
@@ -45,11 +46,16 @@ class GetTopResult(object):
         allVectors = self.coll.find({}, {'Vector':True, '_id':True})
         # topCosineSimilarity = 0.0
         vecDict = dict()
+        count = 0
         for vector in allVectors:
+            count += 1
             array = np.array(vector['Vector']) # 資料庫裡的Vector欄位，當初是以.tolist()存進json，則拿出來要這樣復原
             cosineSimilarity = np.dot(queryVec, array)/(np.linalg.norm(queryVec) * np.linalg.norm(array))
             vecDict[vector['_id']] = cosineSimilarity
+            if count % 10000 == 0: print('已計算' + str(count) + '筆')
+
         
+        print('已開始排序計算結果')
         sorted_vecDict = sorted(vecDict.items(), key=operator.itemgetter(1), reverse=True)
         objectIDList = list()
         for item in sorted_vecDict[0:num]:
@@ -60,27 +66,22 @@ class GetTopResult(object):
 
 
     def testMongo(self):
-        result = self.coll.find({}, {'Vector':1, 'ID':True, '_id':False})
+        result = self.coll.find({}, {'Vector':True, 'ID':True, '_id':False})
+        count = 0
         for item in result:
-            array = np.array(item['Vector'])
             print(item)
-
-
-    def main(self):
-        self.testMongo()
-
+            count += 1
+            if count == 10: break
 
 
 if __name__ == '__main__':
     import sys
     queryList = list()
     for item in sys.argv:
-        if item == sys.argv[0]: continue
+        # if item == sys.argv[0]: continue
         queryList.append(item)
 
     obj = GetTopResult('./med250.model.bin', 'mongodb://140.120.13.244:7777/')
-    # for item in obj.getArticle(queryList, 10):
-    #     print(item)
-    print(obj.getArticle(queryList, 2))
-
+    print(obj.getArticle(queryList, 10))
+    # obj.testMongo()
 
