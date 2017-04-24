@@ -68,7 +68,10 @@ class ipeenCrawler(object):
         # query該餐廳的「分享文」按鈕的url
         if len(returnList) == 0 : pass
         time.sleep(5)
-        resShare = requests.get(self.baseUrl + returnList[0]['href'])
+        try:
+            resShare = requests.get(self.baseUrl + returnList[0]['href'])
+        except:
+            pass
         shareSoup = BeautifulSoup(resShare.text, 'html.parser')
 
         shareLinkList = list()
