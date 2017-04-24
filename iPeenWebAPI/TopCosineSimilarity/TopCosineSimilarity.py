@@ -45,7 +45,6 @@ class GetTopResult(object):
         # topCosineSimilarity = 0.0
         vecDict = dict()
         for vector in allVectors:
-            count += 1
             array = np.array(vector['Vector']) # 資料庫裡的Vector欄位，當初是以.tolist()存進json，則拿出來要這樣復原
             cosineSimilarity = np.dot(queryVec, array)/(np.linalg.norm(queryVec) * np.linalg.norm(array))
             vecDict[vector['_id']] = cosineSimilarity
