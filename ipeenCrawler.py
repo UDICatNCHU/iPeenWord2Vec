@@ -71,7 +71,7 @@ class ipeenCrawler(object):
         try:
             resShare = requests.get(self.baseUrl + returnList[0]['href'])
         except:
-            pass
+            return None
         shareSoup = BeautifulSoup(resShare.text, 'html.parser')
 
         shareLinkList = list()
