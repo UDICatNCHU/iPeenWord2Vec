@@ -1,3 +1,4 @@
+# @Author: Shane Yu  @Date Created: March 23, 2017
 from gensim import models
 import numpy as np
 import jieba.analyse

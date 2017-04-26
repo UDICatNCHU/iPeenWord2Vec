@@ -1,3 +1,4 @@
+# @Author: Shane Yu  @Date Created: March 24, 2017
 import numpy as np
 from gensim import models
 import operator
