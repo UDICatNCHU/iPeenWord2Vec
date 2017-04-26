@@ -43,7 +43,11 @@ class ipeenCrawler(object):
         restaurantList = list()
         soup = BeautifulSoup(resStr, 'html.parser')
         tagList = soup.select('.name > a')
-        del tagList[0] # 刪除第一個隨機顯示的餐廳
+        try: # 以防沒有第一個隨機顯示的餐廳
+            del tagList[0] # 刪除第一個隨機顯示的餐廳
+        except:
+            pass
+
         for item in tagList:
             restaurantList.append(self.baseUrl + item['href'])
 
