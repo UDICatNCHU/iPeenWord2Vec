@@ -18,7 +18,7 @@ class ipeenCrawler(object):
         self.typeNumber = typeNumber
 
 
-    def getTypeUrl(self):
+    def getTypeUrl(self, startFrom):
         """
         功能: loops over 每種type
         輸出: 看typeIndexDict有幾個element就呼叫幾次soupProcess_Type，
@@ -29,7 +29,7 @@ class ipeenCrawler(object):
 
         print('<===開始處理' + self.typeIndexDict[self.typeNumber][1] + '===>')
 
-        for p in range(1, self.typeIndexDict[self.typeNumber][0]):
+        for p in range(int(startFrom), self.typeIndexDict[self.typeNumber][0]):
             print('==========正在處理第' + str(p) + '頁的所有餐廳==========')
             time.sleep(5)
             res = requests.get(typeUrlHead + str(self.typeNumber) + typeUrlTail + str(p))
@@ -147,12 +147,8 @@ class ipeenCrawler(object):
                 count += 1
 
 
-    def main(self):
-        self.getTypeUrl()
-        print('>>>>>>> 全部文章都已經爬完 <<<<<<<')
-
-
 
 if __name__ == '__main__':
-    ipeenObj = ipeenCrawler(int(sys.argv[1]))
-    ipeenObj.main()
+    ipeenObj = ipeenCrawler(int(sys.argv[1])) # 種類編號
+    ipeenObj.getTypeUrl(sys.argv[2]) # 從哪一頁開始
+    print('>>>>>>>>>>>>>>>>>>>> 全部文章都已經爬完 <<<<<<<<<<<<<<<<<<<<<<<<')
