@@ -87,9 +87,9 @@ obj.getArticle(queryList, 50)
 ## Web API Usage
 e.g. For querying terms combined with `夏天+啤酒+燒烤` for `50` articles:
 
-http://140.120.13.244:7265/getArticles/?term=夏天+啤酒+燒烤&num=50
+http://140.120.13.243:8532/getArticles/?term=五月天+夏天+啤酒&num=50
 
 ps. For the time being I use django templates for better demonstration, may change to jsonresponse in the future.
 
 ## Contributors
-[Shane Yu](https://github.com/theshaneyu)
+游哲軒 [Shane Yu](https://github.com/theshaneyu)
